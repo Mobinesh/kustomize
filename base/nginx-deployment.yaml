@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: domestic-flight-engine
+    app.ap.deploy: domestic-flight-engine
+    version: 1.0.0
+      #    version: $CI_COMMIT_TAG
+  name: domestic-flight-engine
+  namespace: tourism 
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.ap.deploy: domestic-flight-engine
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "9000"
+        prometheus.io/scrape: "true"
+        traffic.sidecar.istio.io/excludeOutboundIPRanges: 192.168.71.0/24
+        traffic.sidecar.istio.io/excludeOutboundPorts: 6379, 6380, 27017, 1521, 1433, 3306, 5432
+      labels:
+        app: domestic-flight-engine
+        app.ap.deploy: domestic-flight-engine
+        version: 1.0.0
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.ap.deploy
+                    operator: In
+                    values:
+                      - domestic-flight-engine 
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  key: MONGODB_URI-SEC
+                  name: domestic-flight-engine-sec
+            - name: MONGODB_LOG_URI
+              valueFrom:
+                secretKeyRef:
+                  key: MONGODB_LOG_URI-SEC
+                  name: domestic-flight-engine-sec
+          envFrom:
+            - configMapRef:
+                name: domestic-flight-engine-cm
+                  #          image: $REGISTRY_URL/$CI_PROJECT_PATH:$CI_COMMIT_TAG
+          imagePullPolicy: "IfNotPresent"
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 4000
+            timeoutSeconds: 2
+          name: domestic-flight-engine
+          ports:
+            - containerPort: 4000
+            - containerPort: 9091
+            - containerPort: 9000
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 4000
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: "$RSRC_CPU_LIM"
+              memory: "$RSRC_MEM_LIM"
+            requests:
+              cpu: "$RSRC_CPU_REQ"
+              memory: "$RSRC_MEM_REQ"
+      hostAliases:
+        - hostnames:
+            - "lsrv-mongodb1"
+          ip: "192.168.71.49"
+        - hostnames:
+            - "lsrv-mongodb2"
+          ip: "192.168.71.50"
+        - hostnames:
+            - "lsrv-mongodb3"
+          ip: "192.168.71.51"
+      imagePullSecrets:
+        - name: domestic-flight-engine-reg
+      restartPolicy: Always
