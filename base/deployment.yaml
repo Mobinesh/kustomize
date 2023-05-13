@@ -2,15 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
-  namespace: prod
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app: frontend-deployment
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend-deployment
     spec:
       containers:
       - name: app
