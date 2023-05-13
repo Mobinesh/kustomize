@@ -4,6 +4,7 @@ bases:
   - ../../base
 namespace: prod
 patchesStrategicMerge:
-  - rollout-replica.yaml
   - hpa.yaml
   - service-nodeport.yaml 
+resources:
+  - rollout-replica.yaml
