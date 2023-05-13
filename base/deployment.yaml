@@ -1,58 +1,21 @@
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
-  labels:
-    app: nginx
+  name: frontend-deployment
+  namespace: prod
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: frontend
   template:
     metadata:
       labels:
-        app: nginx
+        app: frontend
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
-        volumeMounts:
-          - name: config
-            mountPath: /etc/nginx/conf.d
-            subPath: nginx.conf
-            readOnly: true
-        env:
-        - name: TZ
-          valueFrom:
-            configMapKeyRef:
-              name: nginx-conf
-              key: timezone
-        - name: CITY
-          valueFrom:
-            configMapKeyRef:
-              name: nginx-conf
-              key: city
-        - name: BIB
-          valueFrom:
-            configMapKeyRef:
-              optional: true
-              name: nginx-conf
-              key: bar
-        - name: SLEEP
-          valueFrom:
-            configMapKeyRef:
-              name: sleep
-              key: sleep
-        command: ["sleep", $(SLEEP)]  
-        imagePullPolicy: IfNotPresent 
+      - name: app
+        image: nginx:1.22.1
         ports:
-        - containerPort: 80
-              livenessProbe:
-              httpGet:
-                   path: /
-                   port: 80
-                   initialDelaySeconds: 10
-      volumes:
-          - name: config
-            configMap:
-               name: nginx 
+        - name: http
+          containerPort: 80
+          protocol: TCP
