@@ -1,0 +1,7 @@
+kind: Kustomization
+bases:
+  - ../../base
+patchesStrategicMerge:
+  - rollout-replica.yaml
+  - hpa.yaml
+  - service-nodeport.yaml
