@@ -1,96 +1,58 @@
-apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: nginx
   labels:
-    app: domestic-flight-engine
-    app.ap.deploy: domestic-flight-engine
-    version: 1.0.0
-      #    version: $CI_COMMIT_TAG
-  name: domestic-flight-engine
-  namespace: tourism 
+    app: nginx
 spec:
   replicas: 1
-  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app.ap.deploy: domestic-flight-engine
+      app: nginx
   template:
     metadata:
-      annotations:
-        prometheus.io/port: "9000"
-        prometheus.io/scrape: "true"
-        traffic.sidecar.istio.io/excludeOutboundIPRanges: 192.168.71.0/24
-        traffic.sidecar.istio.io/excludeOutboundPorts: 6379, 6380, 27017, 1521, 1433, 3306, 5432
       labels:
-        app: domestic-flight-engine
-        app.ap.deploy: domestic-flight-engine
-        version: 1.0.0
+        app: nginx
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app.ap.deploy
-                    operator: In
-                    values:
-                      - domestic-flight-engine 
-              topologyKey: kubernetes.io/hostname
       containers:
-        - env:
-            - name: MONGODB_URI
-              valueFrom:
-                secretKeyRef:
-                  key: MONGODB_URI-SEC
-                  name: domestic-flight-engine-sec
-            - name: MONGODB_LOG_URI
-              valueFrom:
-                secretKeyRef:
-                  key: MONGODB_LOG_URI-SEC
-                  name: domestic-flight-engine-sec
-          envFrom:
-            - configMapRef:
-                name: domestic-flight-engine-cm
-                  #          image: $REGISTRY_URL/$CI_PROJECT_PATH:$CI_COMMIT_TAG
-          imagePullPolicy: "IfNotPresent"
-          livenessProbe:
-            failureThreshold: 3
-            initialDelaySeconds: 10
-            periodSeconds: 2
-            successThreshold: 1
-            tcpSocket:
-              port: 4000
-            timeoutSeconds: 2
-          name: domestic-flight-engine
-          ports:
-            - containerPort: 4000
-            - containerPort: 9091
-            - containerPort: 9000
-          readinessProbe:
-            failureThreshold: 3
-            initialDelaySeconds: 10
-            periodSeconds: 2
-            successThreshold: 1
-            tcpSocket:
-              port: 4000
-            timeoutSeconds: 2
-          resources:
-            limits:
-              cpu: "$RSRC_CPU_LIM"
-              memory: "$RSRC_MEM_LIM"
-            requests:
-              cpu: "$RSRC_CPU_REQ"
-              memory: "$RSRC_MEM_REQ"
-      hostAliases:
-        - hostnames:
-            - "lsrv-mongodb1"
-          ip: "192.168.71.49"
-        - hostnames:
-            - "lsrv-mongodb2"
-          ip: "192.168.71.50"
-        - hostnames:
-            - "lsrv-mongodb3"
-          ip: "192.168.71.51"
-      imagePullSecrets:
-        - name: domestic-flight-engine-reg
-      restartPolicy: Always
+      - name: nginx
+        image: nginx:latest
+        volumeMounts:
+          - name: config
+            mountPath: /etc/nginx/conf.d
+            subPath: nginx.conf
+            readOnly: true
+        env:
+        - name: TZ
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-conf
+              key: timezone
+        - name: CITY
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-conf
+              key: city
+        - name: BIB
+          valueFrom:
+            configMapKeyRef:
+              optional: true
+              name: nginx-conf
+              key: bar
+        - name: SLEEP
+          valueFrom:
+            configMapKeyRef:
+              name: sleep
+              key: sleep
+        command: ["sleep", $(SLEEP)]  
+        imagePullPolicy: IfNotPresent 
+        ports:
+        - containerPort: 80
+              livenessProbe:
+              httpGet:
+                   path: /
+                   port: 80
+                   initialDelaySeconds: 10
+      volumes:
+          - name: config
+            configMap:
+               name: nginx 
