@@ -9,4 +9,4 @@ patchesStrategicMerge:
 images:
  - name: nginx
    newName: nginx
-   newTag: 1.22.1
+   newTag: latest
