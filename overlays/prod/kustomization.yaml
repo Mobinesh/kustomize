@@ -8,3 +8,8 @@ patchesStrategicMerge:
   - service-nodeport.yaml 
 resources:
   - rollout-replica.yaml
+
+images:
+ - name: nginx
+   newName: nginx
+   newTag: latest
