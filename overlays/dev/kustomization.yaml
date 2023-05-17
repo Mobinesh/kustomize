@@ -7,6 +7,5 @@ patchesStrategicMerge:
  - hpa.yaml
 
 images:
- - name: app
-   newName: mobinesh/alpine
+ - name: mobinesh/alpine
    newTag: v1.22.4
