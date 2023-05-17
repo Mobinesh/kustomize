@@ -10,6 +10,6 @@ resources:
   - rollout-replica.yaml
 
 images:
- - name: nginx
-   newName: nginx
-   newTag: latest
+ - name: alpine
+   newName: mobinesh/alpine
+   newTag: 1.0.1
