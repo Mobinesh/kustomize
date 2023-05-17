@@ -9,4 +9,4 @@ patchesStrategicMerge:
 images:
  - name: alpine
    newName: mobinesh/alpine
-   newTag: 1.0.1
+   newTag: v1.1.0
