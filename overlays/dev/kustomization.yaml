@@ -3,8 +3,8 @@ kind: Kustomization
 resources:
  - ../../base/
 namespace: dev
-patchesStrategicMerge:
- - hpa.yaml
+# patchesStrategicMerge:
+#  - hpa.yaml
 
 images:
  - name: mobinesh/alpine
