@@ -8,4 +8,4 @@ namespace: dev
 
 images:
  - name: harbor.tasn.ir/library/alpine
-   newTag: 3.11
+   newTag: "3.11"
