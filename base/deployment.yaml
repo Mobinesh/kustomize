@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: localhost:5000/ubuntu:v.1.1
+        image: harbor.tasn.ir/library/alpine:3.11
         ports:
         - name: http
           containerPort: 80
