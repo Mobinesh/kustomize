@@ -7,5 +7,5 @@ namespace: dev
 #  - hpa.yaml
 
 images:
- - name: mobinesh/alpine
-   newTag: v1.22.2
+ - name: localhost:5000/ubuntu
+   newTag: v.1.1
