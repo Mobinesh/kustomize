@@ -7,5 +7,5 @@ namespace: dev
 #  - hpa.yaml
 
 images:
- - name: harbor.tasn.ir/library/alpine
-   newTag: "3.11"
+ - name: mobinesh/alpine
+   newTag: "v.1.22.4"
