@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - mobinesh/alpine:v1.22.5
