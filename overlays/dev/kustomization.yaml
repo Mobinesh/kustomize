@@ -17,4 +17,5 @@ configMapGenerator:
 - name: test-cm
   files:
     - configmap
+    - developers
 nameSuffix: ""
