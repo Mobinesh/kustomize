@@ -1,22 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
- - ../../base/
+- ../../base/
 namespace: dev
 # patchesStrategicMerge:
-#  - hpa.yaml
-
+# - hpa.yaml
 images:
- - name: mobinesh/alpine
-   newTag: v1.22.4
+- name: mobinesh/alpine
+  newTag: v1.22.4
 secretGenerator:
-  - name: test-sec
-    files:
-      - secret
-  #  namespace: dev
-configMapGenerator: 
-   - name: test-cm
-     files:
-       - configmap
-namePostfix: ""
-       
+- name: test-sec
+  files:
+  - secret
+# namespace: dev
+configMapGenerator:
+- name: test-cm
+  files:
+    - configmap
+nameSuffix: ""
