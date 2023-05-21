@@ -13,7 +13,7 @@ secretGenerator:
   - name: test-sec
     files:
       - secret
-    namespace: dev
+  #  namespace: dev
  configMapGenerator: 
    - name: test-cm
      files:
