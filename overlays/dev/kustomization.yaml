@@ -14,7 +14,7 @@ secretGenerator:
     files:
       - secret
   #  namespace: dev
- configMapGenerator: 
+configMapGenerator: 
    - name: test-cm
      files:
        - configmap
