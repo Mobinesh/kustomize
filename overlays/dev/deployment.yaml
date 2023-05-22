@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sap-mock
+  namespace: staging
+spec:
+  selector: frontend-deployment
+#  template: ...
+  volumeMounts:
+  - mountPath: /opt/
+    name: test-cm
+volumes:
+   - name: test-cm
+     configMap:
+        name: test-cm
