@@ -18,4 +18,3 @@ configMapGenerator:
   files:
     - configmap
     - developers
-nameSuffix: ""
