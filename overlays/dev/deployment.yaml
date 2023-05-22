@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sap-mock
-  namespace: staging
+  name: frontend-deployment
+  namespace: dev
 spec:
   selector: frontend-deployment
 #  template: ...
