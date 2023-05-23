@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: frontend-deployment
   volumeMounts:
-  - mountPath: /opt/
+  - mountPath: /home
     name: test-cm
 volumes:
    - name: test-cm
