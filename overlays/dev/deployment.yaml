@@ -6,10 +6,3 @@ spec:
   selector:
     matchLabels:
       app: frontend-deployment
-  volumeMounts:
-  - mountPath: /home
-    name: test-cm
-volumes:
-   - name: test-cm
-     configMap:
-        name: test-cm
