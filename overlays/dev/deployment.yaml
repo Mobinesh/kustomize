@@ -6,3 +6,18 @@ spec:
   selector:
     matchLabels:
       app: frontend-deployment
+  
+  annotations:
+        vault.security.banzaicloud.io/vault-addr: "https://vault:8200"
+        vault.security.banzaicloud.io/vault-tls-secret: "vault-tls"
+        vault.security.banzaicloud.io/vault-skip-verify: "false"
+        vault.security.banzaicloud.io/vault-role: "default"  
+  template:
+    spec: 
+      env:
+       - name: MICROSERVICE_FINANCIAL_SQL_USERNAME-SEC
+         value: "vault:secret/ap/pwa/frontend/ap-deployment-kustomize#MICROSERVICE_FINANCIAL_SQL_USERNAME-SEC"
+       - name: MICROSERVICE_FINANCIAL_DB_SQL_URL-SEC
+         value: "vault:secret/ap/pwa/frontend/ap-deployment-kustomize#MICROSERVICE_FINANCIAL_DB_SQL_URL-SEC"
+       - name: MICROSERVICE_FINANCIAL_SQL_PASSWORD-SEC
+         value: "vault:secret/ap/pwa/frontend/ap-deployment-kustomize#MICROSERVICE_FINANCIAL_SQL_PASSWORD-SEC"
