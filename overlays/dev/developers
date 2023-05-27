@@ -1,8 +1,8 @@
- GRPC_ADDRESS=":4000"
- HTTP_ADDRESS=":9000"
- MAINLOG_FACILITY="domestic-flight-engine-mainlog"
- REQRES_FACILITY="domestic-flight-engine-reqres"
- SENTRY_URI="http://824fbf0c8caa4eb38d815afd3204f8ad@sentry.tasn.ir/123"
- GRAYLOG_URI="udp://graylog.tasn.ir:12201"
- SNAPPTRIP_PROIVDER_URI="domestic-flight-provider.tourism:1792"
- LOCALE_PATH="/app/locale/"
+GRPC_ADDRESS=:4000
+HTTP_ADDRESS=:9000
+MAINLOG_FACILITY=domestic-flight-engine-mainlog
+REQRES_FACILITY=domestic-flight-engine-reqres
+SENTRY_URI=http://824fbf0c8caa4eb38d815afd3204f8ad@sentry.tasn.ir/123
+GRAYLOG_URI=udp://graylog.tasn.ir:12201
+SNAPPTRIP_PROIVDER_URI=domestic-flight-provider.tourism:1792
+LOCALE_PATH=/app/locale/

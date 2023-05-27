@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-cm
+  namespace: default
+data:
+  game.properties: |
+    RPL=3
+    REV_HIST_LIM=5
+    RSRC_MEM_LIM=4Gi
+    RSRC_CPU_LIM=4
+    RSRC_MEM_REQ=64Mi
+    RSRC_CPU_REQ=250m
