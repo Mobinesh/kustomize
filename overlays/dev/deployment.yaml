@@ -21,3 +21,6 @@ spec:
          value: "vault:secret/ap/pwa/frontend/ap-deployment-kustomize#MICROSERVICE_FINANCIAL_DB_SQL_URL-SEC"
        - name: MICROSERVICE_FINANCIAL_SQL_PASSWORD-SEC
          value: "vault:secret/ap/pwa/frontend/ap-deployment-kustomize#MICROSERVICE_FINANCIAL_SQL_PASSWORD-SEC"
+      envFrom:
+        - configMapRef:
+            name: test-cm
