@@ -8,10 +8,6 @@ patchesStrategicMerge:
 images:
 - name: mobinesh/alpine
   newTag: v1.22.4
-secretGenerator:
-- name: test-sec
-  files:
-  - secret
 configMapGenerator:
 - name: test-cm
   files:
