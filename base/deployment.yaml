@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: mobinesh/alpine
+        image: mobinesh/alpine:1.22.0
         ports:
         - name: http
           containerPort: 80
