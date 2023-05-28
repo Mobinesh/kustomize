@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - ../../base
   #- ./configmap.yaml  
-namespace: default
+namespace: dev
 patchesStrategicMerge:
 - deployment.yaml
 images:
