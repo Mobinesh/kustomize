@@ -13,3 +13,4 @@ configMapGenerator:
 - name: test-cm
   envs:
   - env
+  - env2
