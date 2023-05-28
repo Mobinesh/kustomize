@@ -3,6 +3,12 @@ kind: Deployment
 metadata:
   name: frontend-deployment
   namespace: default
+    #  annotations:
+    #    vault.security.banzaicloud.io/vault-addr: "https://vault:8200"
+    #    vault.security.banzaicloud.io/vault-ignore-missing-secrets: "true"
+    #    vault.security.banzaicloud.io/vault-tls-secret: "skip"  # Update this line
+    #    vault.security.banzaicloud.io/vault-skip-verify: "false"
+    #    vault.security.banzaicloud.io/vault-role: "default"
 spec:
   selector:
     matchLabels:

@@ -18,7 +18,7 @@ spec:
         envFrom:
         - configMapRef:
             name: test-cm
-        env:
-        - name: AWS_SECRET_ACCESS_KEY
-          value: "vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY"
+              #        env:
+              #        - name: AWS_SECRET_ACCESS_KEY
+              #          value: "vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY"
 
