@@ -7,8 +7,8 @@ namespace: dev
 patchesStrategicMerge:
 - deployment.yaml
 images:
-- name: nginx 
-  newTag: 1.22.2
+- name: mobinesh/nginx 
+  newTag: 1.22.1
 configMapGenerator:
 - name: test-cm
   envs:
