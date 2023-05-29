@@ -8,7 +8,7 @@ patchesStrategicMerge:
 - deployment.yaml
 images:
 - name: nginx 
-  newTag: 1.22.1
+  newTag: 1.22.2
 configMapGenerator:
 - name: test-cm
   envs:
