@@ -1,3 +1,1 @@
-kustomize:
-  images:
-  - mobinesh/nginx:1.22.5
+
