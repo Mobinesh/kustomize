@@ -13,8 +13,9 @@ spec:
     spec:
       serviceAccountName: default
       containers:
-      - image: mobinesh/alpine:1.22.4
-        name: frontend
+      - name: app
+        image: nginx:1.22.1
+
         envFrom:
         - configMapRef:
             name: test-cm
