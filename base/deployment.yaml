@@ -11,22 +11,23 @@ spec:
     metadata:
       labels:
         app: frontend-deployment
-      annotations       
-        vault.security.banzaicloud.io/vault-addr: "https://vault.default:8200"
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "https://vault.default.svc.cluster.local:8200"
         vault.security.banzaicloud.io/vault-tls-secret: "vault-tls"
         vault.security.banzaicloud.io/vault-skip-verify: "true"
         vault.security.banzaicloud.io/vault-role: "default"
-        vault.security.banzaicloud.io/vault-path: "kubernetes/"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
         vault.security.banzaicloud.io/vault-agent: "false"
     spec:
+      serviceAccountName: default
       containers:
-      - name: app
-        image: mobinesh/nginx:1.22.1
-        env:
-         - name: AWS_SECRET_ACCESS_KEY
-           value: vault:secret/data/demosecret/aws
-        ports:
-        - name: http
-          containerPort: 80
-          protocol: TCP
+        - name: app
+          image: mobinesh/nginx:1.22.1
+          env:
+            - name: AWS_SECRET_ACCESS_ID
+              value: vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
 
