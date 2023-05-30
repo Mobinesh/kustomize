@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - ../../base
 - ./nodeport.yaml
-namespace: test
+namespace: dev
 patchesStrategicMerge:
 - deployment.yaml
 images:
