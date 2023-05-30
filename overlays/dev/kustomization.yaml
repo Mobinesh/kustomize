@@ -3,12 +3,12 @@ kind: Kustomization
 resources:
 - ../../base
 - ./nodeport.yaml
-namespace: dev
+namespace: test
 patchesStrategicMerge:
 - deployment.yaml
 images:
 - name: mobinesh/nginx 
-  newTag: 1.22.3
+  newTag: 1.22.1
 configMapGenerator:
 - name: test-cm
   envs:

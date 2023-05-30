@@ -11,10 +11,18 @@ spec:
     metadata:
       labels:
         app: frontend-deployment
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "https://vault:8200"
+        vault.security.banzaicloud.io/vault-tls-secret: "vault-tls"
+        vault.security.banzaicloud.io/vault-skip-verify: "false"
+        vault.security.banzaicloud.io/vault-role: "default"
     spec:
       containers:
       - name: app
         image: mobinesh/nginx:1.22.1
+        env:
+         - name: AWS_SECRET_ACCESS_KEY
+           value: vault:secret/data/demosecret/aws
         ports:
         - name: http
           containerPort: 80

@@ -13,12 +13,11 @@ spec:
     spec:
       serviceAccountName: default
       containers:
-      - name: app
-        imagePullPolicy: IfNotPresent
-
-        envFrom:
-        - configMapRef:
-            name: test-cm
+        - name: app
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: test-cm
               #        env:
               #        - name: AWS_SECRET_ACCESS_KEY
               #          value: "vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY"
