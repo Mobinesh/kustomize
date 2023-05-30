@@ -26,6 +26,8 @@ spec:
           env:
             - name: AWS_SECRET_ACCESS_ID
               value: vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID
+            - name: FARANEGAR_API_KEY
+              value: vault:secret/data/accounts/FARANEGAR_API_KEY_SEC#FARANEGAR_API_KEY
           ports:
             - name: http
               containerPort: 80
