@@ -17,4 +17,4 @@ For deploying with kubectl use `kubectl apply -k /overlays/dev/`
 
 To use argocd application file `kubectl apply -f application.yaml`
 
-> Note that in the application.yaml file argocd-image-updater is activated8 and to use it you need to install argocd image updater firs, create secret for write-back method and then apply the application
+> Note that in the application.yaml file argocd-image-updater is activated. If you want to use it you need to install argocd image updater first, create secret for write-back method and then apply the application
