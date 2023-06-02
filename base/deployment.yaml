@@ -26,11 +26,11 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              cpu: 200m
-              memory: 512Mi
+              cpu: "200m"
+              memory: "512Mi"
             limits:
-              cpu: 200m
-              memory: 512Mi
+              cpu: "200m"
+              memory: "512Mi"
           env:
             - name: AWS_SECRET_ACCESS_ID
               value: vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID
