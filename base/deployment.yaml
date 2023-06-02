@@ -27,11 +27,10 @@ spec:
           resources:
             requests:
               cpu: 200m
-              memory: 512mi
+              memory: 512Mi
             limits:
               cpu: 200m
-              memory: 512mi
-      restartpolicy: OnFailure
+              memory: 512Mi
           env:
             - name: AWS_SECRET_ACCESS_ID
               value: vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID
@@ -41,4 +40,5 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+      restartPolicy: OnFailure
 
