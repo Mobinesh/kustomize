@@ -23,6 +23,15 @@ spec:
       containers:
         - name: app
           image: mobinesh/nginx:1.22.1
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 200m
+              memory: 512mi
+            limits:
+              cpu: 200m
+              memory: 512mi
+      restartpolicy: OnFailure
           env:
             - name: AWS_SECRET_ACCESS_ID
               value: vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID
