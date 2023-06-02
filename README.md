@@ -13,7 +13,8 @@ sudo apt update
 sudo apt install snapd
 sudo snap install kustomize
 ```
-for deploying with kubectl use `kubectl apply -k /overlays/dev/`
-to use argocd application file `kubectl apply -f application.yaml`
+For deploying with kubectl use `kubectl apply -k /overlays/dev/`
+
+To use argocd application file `kubectl apply -f application.yaml`
 
 > Note that in the application.yaml file argocd-image-updater is activated8 and to use it you need to install argocd image updater firs, create secret for write-back method and then apply the application
