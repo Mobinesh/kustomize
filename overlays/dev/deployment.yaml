@@ -18,9 +18,11 @@ spec:
             - configMapRef:
                 name: test-cm
           resources:
-            cpu: "100m"
-            memory: "128mi"
-          limits:
-            cpu:  "100m"
-            memory: "128mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
 
